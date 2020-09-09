@@ -1,5 +1,5 @@
 let randomHeights;
-let arrSize = 30;
+let arrSize = 50;
 
 function setup() {
   createCanvas(windowWidth, 400);
@@ -8,18 +8,24 @@ function setup() {
 
 //these two variable to perform two sort
 let m = 0;
-let n = 0;
+let n = 1;
+let minValueIndex = 0;
 
 function draw() {
+  //   console.log("m,n", m, n);
   background(200);
   let xpos = 5;
   for (let k = 0; k < arrSize; k++) {
     //if not sorted color black
     fill(0);
     //if is sorted color red
-    if (k >= arrSize - m) {
+    if (k == n) {
+      fill(0, 0, 255);
+    } else if (k < m) {
       fill(200, 0, 0);
     }
+
+    console.log("k,n", k, n);
     //show rect equal to random height
     rect(xpos, height - randomHeights[k] - 10, 10, randomHeights[k]);
     //if current rect is the rect being swapped then show trainge below it
@@ -30,29 +36,22 @@ function draw() {
     }
 
     //to fit the number of rectangele in screen width
-    xpos = xpos + windowWidth / arrSize;
+    xpos = xpos + windowWidth / (arrSize + 2);
   }
-
-  if (randomHeights[n] > randomHeights[n + 1]) {
-    swap(randomHeights, n, n + 1);
-  }
-
   //variables for swap
-  n++;
-  if (n >= randomHeights.length - 1 - m) {
+
+  if (n > 0 && randomHeights[n] < randomHeights[n - 1]) {
+    swap(randomHeights, n, n - 1);
+    n = n - 1;
+  } else {
+    n = m;
     m++;
-    n = 0;
   }
+
   //each item is sorted?
-  if (m >= randomHeights.length) {
+  if (m > randomHeights.length) {
     console.log("complete");
     noLoop();
-  }
-}
-
-function sort(randomHeights) {
-  for (let i = 0; i < randomHeights.length; i++) {
-    for (let j = 0; j < randomHeights.length; j++) {}
   }
 }
 
