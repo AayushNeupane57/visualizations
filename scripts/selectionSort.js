@@ -1,25 +1,25 @@
-let minValueIndex = 0;
-
-export default (p5, m, n, randomHeights) => {
-  //variables for swap
-  n++;
-  minValueIndex =
-    randomHeights[n] < randomHeights[minValueIndex] ? n : minValueIndex;
-  if (n >= randomHeights.length) {
-    swap(randomHeights, m, minValueIndex);
-    m++;
-    n = m;
-    minValueIndex = m;
+export default async (randomHeights, currentRange) => {
+  for (let i = 0; i < randomHeights.length; i++) {
+    currentRange[0] = 0;
+    currentRange[1] = i - 1;
+    let minValueIndex = i;
+    for (let j = i + 1; j < randomHeights.length; j++) {
+      currentRange[2] = j;
+      await sleep(10);
+      if (randomHeights[j] < randomHeights[minValueIndex]) {
+        minValueIndex = j;
+      }
+    }
+    await swap(randomHeights, minValueIndex, i);
   }
-  //each item is sorted?
-  if (m >= randomHeights.length) {
-    minValueIndex = 0;
-  }
-  return [m, n];
 };
 
-let swap = (arr, i, j) => {
+let swap = async (arr, i, j) => {
+  await sleep(10);
   let temp = arr[i];
   arr[i] = arr[j];
   arr[j] = temp;
 };
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

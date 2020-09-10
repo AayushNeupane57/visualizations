@@ -1,20 +1,24 @@
-function insertionSort(p5, m, n, randomHeights) {
-  //variables for swap
+async function insertionSort(randomHeights, currentRange) {
+  currentRange[0] = 0;
 
-  if (n > 0 && randomHeights[n] < randomHeights[n - 1]) {
-    swap(randomHeights, n, n - 1);
-    n = n - 1;
-  } else {
-    n = m;
-    m++;
+  for (let i = 1; i < randomHeights.length; i++) {
+    currentRange[1] = i;
+    let j = i;
+    while (j >= 0 && randomHeights[j] < randomHeights[j - 1]) {
+      currentRange[2] = j;
+      await swap(randomHeights, j, j - 1);
+      j--;
+    }
   }
-  return [m, n];
 }
 
-let swap = (arr, i, j) => {
+let swap = async (arr, i, j) => {
+  await sleep(10);
   let temp = arr[i];
   arr[i] = arr[j];
   arr[j] = temp;
 };
-
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 export default insertionSort;

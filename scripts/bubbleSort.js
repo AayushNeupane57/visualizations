@@ -1,21 +1,24 @@
-function bubbleSort(p5, m, n, randomHeights) {
-  if (randomHeights[n] > randomHeights[n + 1]) {
-    swap(randomHeights, n, n + 1);
+async function bubbleSort(randomHeights, currentRange) {
+  for (let i = 0; i < randomHeights.length; i++) {
+    currentRange[0] = randomHeights.length - i - 1;
+    currentRange[1] = randomHeights.length - 1;
+    for (let j = 0; j < randomHeights.length - 1 - i; j++) {
+      currentRange[2] = j;
+      if (randomHeights[j] > randomHeights[j + 1]) {
+        await swap(randomHeights, j, j + 1);
+      }
+    }
   }
-
-  //variables for swap
-  n++;
-  if (n >= randomHeights.length - 1 - m) {
-    m++;
-    n = 0;
-  }
-  //each item is sorted?
-  return [m, n];
 }
 
-let swap = (arr, i, j) => {
+//this is made async to take time and draw to the canvas
+let swap = async (arr, i, j) => {
+  await sleep(10);
   let temp = arr[i];
   arr[i] = arr[j];
   arr[j] = temp;
 };
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 export default bubbleSort;
