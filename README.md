@@ -1,4 +1,4 @@
-# visualazations
+# visualizations
 contains visualization of fundamental algorithms and datastructures
 
-![image](https://github.com/AayushNeupane57/visualazations/blob/master/img/visualizer.PNG)
+![image](https://github.com/AayushNeupane57/visualizations/blob/master/img/visualizer.PNG)
