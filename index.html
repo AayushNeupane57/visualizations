@@ -6,7 +6,19 @@
     <title>Document</title>
   </head>
   <body>
+    <h1>Algorithm visualizer</h1>
+    <div>
+      Customize Here
+      <select name="algorithms" id="algorithms" onselect="">
+        <option value="selectionSort">Selection Sort</option>
+        <option value="bubbleSort">Bubble Sort</option>
+        <option value="insertionSort">Insertion Sort</option>
+      </select>
+      <input placeholder="Number of inputs" type="number" id="arrSize" value="30"></input>
+      <button id="resetButton">Reset</button>
+      <button id="sortButton">Sort</button>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-    <script src="./js/insertionSort.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
