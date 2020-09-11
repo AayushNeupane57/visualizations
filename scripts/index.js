@@ -71,7 +71,7 @@ new p5(function (p5) {
       //if not sorted color black
       p5.fill(0);
       if (k >= currentRange[0] && k <= currentRange[1]) {
-        p5.fill(0, 0, 255);
+        p5.fill(255, 0, 0);
       }
       //show rect equal to random height
       p5.rect(xpos, p5.height - randomHeights[k] - 10, 10, randomHeights[k]);

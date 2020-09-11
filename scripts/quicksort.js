@@ -8,13 +8,13 @@ async function qsort(arr, currentRange, time) {
 
 async function sort(arr, low, high, currentRange) {
   if (high <= low) return;
-  currentRange[0] = low;
-  currentRange[1] = high;
   let pivot = arr[low];
   let i = low + 1;
   let gt = high;
   let lt = low;
   while (i <= gt) {
+    currentRange[0] = lt;
+    currentRange[1] = gt;
     if (arr[i] == pivot) {
       i++;
     }
