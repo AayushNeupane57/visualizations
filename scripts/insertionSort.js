@@ -1,4 +1,4 @@
-async function insertionSort(randomHeights, currentRange) {
+async function insertionSort(randomHeights, currentRange,time) {
   currentRange[0] = 0;
 
   for (let i = 1; i < randomHeights.length; i++) {
@@ -10,6 +10,7 @@ async function insertionSort(randomHeights, currentRange) {
       j--;
     }
   }
+  clearTimeout(time)
 }
 
 let swap = async (arr, i, j) => {

@@ -1,4 +1,4 @@
-async function bubbleSort(randomHeights, currentRange) {
+async function bubbleSort(randomHeights, currentRange, time) {
   for (let i = 0; i < randomHeights.length; i++) {
     currentRange[0] = randomHeights.length - i - 1;
     currentRange[1] = randomHeights.length - 1;
@@ -9,6 +9,7 @@ async function bubbleSort(randomHeights, currentRange) {
       }
     }
   }
+  clearTimeout(time);
 }
 
 //this is made async to take time and draw to the canvas

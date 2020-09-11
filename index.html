@@ -11,15 +11,18 @@
       Customize Here
       <select name="algorithms" id="algorithms" onselect="">
         <option value="quickSort">Quick Sort</option>
+        <option value="mergeSort">Merge Sort</option>
         <option value="selectionSort">Selection Sort</option>
         <option value="bubbleSort">Bubble Sort</option>
         <option value="insertionSort">Insertion Sort</option>
       </select>
-      <input placeholder="Number of inputs" type="number" id="arrSize" value="30"></input>
+      <span>Number Of inputs</span><input placeholder="Number of inputs" type="number" id="arrSize" value="30"></input>
       <button id="resetButton">Reset</button>
       <button id="sortButton">Sort</button>
+      <span>Run Time</span>  <label id="minutes">00</label>:<label id="seconds">00</label>:<label id="miliSeconds">00</label>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
     <script type="module" src="./scripts/index.js"></script>
+    
   </body>
 </html>

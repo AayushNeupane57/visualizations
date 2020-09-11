@@ -2,11 +2,14 @@ import selectionSort from "./selectionSort.js";
 import insertionSort from "./insertionSort.js";
 import bubbleSort from "./bubbleSort.js";
 import quickSort from "./quicksort.js";
+import mergeSort from "./mergeSort.js";
+import timer from "./utils/timer.js";
 
 let start = false;
 let algoToVisualize = "quickSort";
 let arrSize = 30;
 let randomHeights = generateRandomArray(arrSize);
+let time;
 
 document.getElementById("sortButton").addEventListener("click", (data) => {
   start = true;
@@ -24,9 +27,11 @@ document.getElementById("arrSize").addEventListener("change", (event) => {
 });
 document.getElementById("resetButton").addEventListener("click", (data) => {
   start = false;
+  clearTimeout(time);
+  timer.reset();
+
   currentRange = [];
   randomHeights = generateRandomArray(arrSize);
-  console.log("reset callde");
 });
 let currentRange = [];
 //these two variable to perform two sort
@@ -38,18 +43,23 @@ new p5(function (p5) {
   p5.draw = function () {
     // console.log(currentRange);
     if (start == true) {
+      time = setInterval(timer.setTime, 10);
       switch (algoToVisualize) {
         case "quickSort":
-          quickSort(randomHeights, currentRange);
+          quickSort(randomHeights, currentRange, time);
+          console.log("quick sort selected");
+          break;
+        case "mergeSort":
+          mergeSort(randomHeights, currentRange, time);
           break;
         case "insertionSort":
-          insertionSort(randomHeights, currentRange);
+          insertionSort(randomHeights, currentRange, time);
           break;
         case "selectionSort":
-          selectionSort(randomHeights, currentRange);
+          selectionSort(randomHeights, currentRange, time);
           break;
         case "bubbleSort":
-          bubbleSort(randomHeights, currentRange);
+          bubbleSort(randomHeights, currentRange, time);
           break;
       }
       start = false;
@@ -61,7 +71,7 @@ new p5(function (p5) {
       //if not sorted color black
       p5.fill(0);
       if (k >= currentRange[0] && k <= currentRange[1]) {
-        p5.fill(220, 0, 0);
+        p5.fill(0, 0, 255);
       }
       //show rect equal to random height
       p5.rect(xpos, p5.height - randomHeights[k] - 10, 10, randomHeights[k]);

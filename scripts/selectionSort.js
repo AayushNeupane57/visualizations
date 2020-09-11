@@ -1,4 +1,4 @@
-export default async (randomHeights, currentRange) => {
+export default async (randomHeights, currentRange, time) => {
   for (let i = 0; i < randomHeights.length; i++) {
     currentRange[0] = 0;
     currentRange[1] = i - 1;
@@ -12,6 +12,7 @@ export default async (randomHeights, currentRange) => {
     }
     await swap(randomHeights, minValueIndex, i);
   }
+  clearTimeout(time);
 };
 
 let swap = async (arr, i, j) => {

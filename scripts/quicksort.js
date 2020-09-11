@@ -1,17 +1,15 @@
 //quick sort implemetation using hoare's three way partitioning method
-
-let currentPivot = [];
-async function qsort(arr, currentRange) {
+async function qsort(arr, currentRange, time) {
   let low = 0;
   let high = arr.length - 1;
   await sort(arr, low, high, currentRange);
-  return currentRange;
+  clearTimeout(time);
 }
 
 async function sort(arr, low, high, currentRange) {
   if (high <= low) return;
-  currentRange.push(low);
-  currentRange.push(high);
+  currentRange[0] = low;
+  currentRange[1] = high;
   let pivot = arr[low];
   let i = low + 1;
   let gt = high;
@@ -29,8 +27,6 @@ async function sort(arr, low, high, currentRange) {
       gt--;
     }
   }
-  currentRange.pop();
-  currentRange.pop();
   await sort(arr, low, lt - 1, currentRange);
   await sort(arr, gt + 1, high, currentRange);
 }
